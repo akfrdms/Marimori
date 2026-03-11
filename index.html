@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marimori</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#000;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.site-title{
+    margin-top:25px;
+    margin-bottom:45px;
+}
+
+.site-title img{
+    width:135px;
+    height:auto;
+}
+
+.game-list{
+    width:80%;
+    max-width:1200px;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:30px;
+}
+
+.game-item{
+    background:#1a1a1a;
+    border-radius:12px;
+    overflow:hidden;
+    text-align:center;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.6);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+
+    text-decoration:none;
+    color:inherit;
+}
+
+.game-item:hover{
+    transform:translateY(-8px);
+    box-shadow:0 14px 30px rgba(0,0,0,0.9);
+}
+
+.game-item img{
+    width:100%;
+    display:block;
+}
+
+.game-title{
+    padding:15px;
+    font-size:18px;
+    font-weight:bold;
+    color:#eaeaea;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="site-title">
+<img src="siteAsset/siteTitle.png" alt="Marimori">
+</div>
+
+<div class="game-list">
+
+<a href="siteAsset/game.html?game=1x1" class="game-item">
+<img src="GameAsset/1X1/1x1_head.jpg">
+<div class="game-title">1X1</div>
+</a>
+
+<a href="siteAsset/game.html?game=4x4" class="game-item">
+<img src="GameAsset/4X4/4X4_head.jpg">
+<div class="game-title">4X4</div>
+</a>
+
+<a href="siteAsset/game.html?game=emoji-bomb" class="game-item">
+<img src="GameAsset/EMOJI BOMB/EMOJI BOMB_head.jpg">
+<div class="game-title">EMOJI BOMB</div>
+</a>
+
+<a href="siteAsset/game.html?game=on-your-notebook" class="game-item">
+<img src="GameAsset/On Your Notebook/On Your Notebook.jpg">
+<div class="game-title">On Your Notebook</div>
+</a>
+
+</div>
+
+</body>
+</html>

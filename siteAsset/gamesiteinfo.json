@@ -1,0 +1,42 @@
+{
+  "1x1": {
+    "name": "1X1",
+    "genre": "Puzzle",
+    "platform": "Android / iOS",
+    "short": "A minimalist puzzle game built around simple logic.",
+    "long": "1X1 is a minimalist puzzle experience where players solve logical challenges using a simple grid system. The gameplay focuses on clarity and pure puzzle mechanics without unnecessary distractions.",
+    "head": "../GameAsset/1X1/1x1_head.jpg",
+    "youtube": "https://www.youtube.com/embed/2LI9Qj2MPuM"
+  },
+
+  "4x4": {
+    "name": "4X4",
+    "genre": "Puzzle",
+    "platform": "Android",
+    "short": "A grid-based puzzle game set in a 4x4 board.",
+    "long": "4X4 challenges players to solve puzzles within a limited 4x4 grid. Each level requires careful thinking and pattern recognition to reach the correct solution.",
+    "head": "../GameAsset/4X4/4X4_head.jpg",
+    "youtube": "https://www.youtube.com/embed/VRyJXsDf4Ns"
+  },
+
+  "emoji-bomb": {
+    "name": "Emoji Bomb",
+    "genre": "Arcade",
+    "platform": "Android",
+    "short": "Avoid dangerous emoji bombs in this fast-paced arcade game.",
+    "long": "Emoji Bomb is a fast-paced arcade game where players must dodge exploding emojis while trying to survive as long as possible. Quick reflexes and focus are essential.",
+    "head": "../GameAsset/EMOJI BOMB/EMOJI BOMB_head.jpg",
+    "youtube": "https://www.youtube.com/embed/VIDEOID",
+    "privacypolicy": "../GameAsset/EMOJI BOMB/eBombPirvacyPolicy.html"
+  },
+
+  "on-your-notebook": {
+    "name": "On Your Notebook",
+    "genre": "Casual",
+    "platform": "Android",
+    "short": "A casual game set inside a notebook world.",
+    "long": "On Your Notebook takes place on the pages of a notebook where drawings come to life. The game offers a light and relaxing experience with simple mechanics and playful visuals.",
+    "head": "../GameAsset/On Your Notebook/On Your Notebook.jpg",
+    "youtube": "https://www.youtube.com/embed/FlFx1k-Pros"
+  }
+}
