@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game Info</title>
 
+<!-- 구글 폰트 가져오기 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Iosevka+Charon+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Noto+Color+Emoji&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
-
 body{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: 'Raleway', Arial, Helvetica, sans-serif; /* 폰트 적용 */
     background:#000;
     color:white;
     display:flex;
@@ -69,9 +73,10 @@ body{
     margin-bottom:10px;
 }
 
-.long{
-    line-height:1.6;
-    color:#ddd;
+.long {
+    line-height: 1.6;
+    color: #ddd;
+    white-space: pre-wrap; /* JSON에서 \n 그대로 줄바꿈 */
 }
 
 .video-container{
@@ -117,8 +122,16 @@ body{
     text-decoration: underline;
 }
 
-</style>
+/* 플랫폼 아이콘 */
+.platform-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+}
 
+</style>
 </head>
 
 <body>
@@ -136,7 +149,7 @@ body{
 <div class="game-title" id="name"></div>
 
 <div class="meta"><b>Genre:</b> <span id="genre"></span></div>
-<div class="meta"><b>Platform:</b> <span id="platform"></span></div>
+<div class="meta"><b>GameStart:</b> <span id="platform"></span></div>
 
 <div class="section">
 <div class="section-title">Short Description</div>
@@ -170,46 +183,80 @@ allowfullscreen>
 <div id="privacyPolicy" class="privacy-policy" style="display:none;">Privacy Policy</div>
 
 <script>
-
-function getGameName()
-{
+function getGameName() {
     const params = new URLSearchParams(window.location.search);
     return params.get("game");
 }
 
+// 상대 경로 기준 플랫폼 이미지
+const platformLogos = {
+    "iOS": "platformLogo/AppStore.png",
+    "Android": "platformLogo/PlayStore.png",
+    "Steam": "platformLogo/Steam.png"
+};
+
+// 플랫폼 아이콘 생성
+function createPlatformIcons(info) {
+    const container = document.getElementById("platform");
+    container.innerHTML = ""; // 초기화
+
+    if(info.appstore){
+        const img = document.createElement("img");
+        img.src = platformLogos["iOS"];
+        img.className = "platform-icon";
+        img.title = "App Store";
+        img.onclick = () => window.open(info.appstore, "_blank");
+        container.appendChild(img);
+    }
+
+    if(info.playstore){
+        const img = document.createElement("img");
+        img.src = platformLogos["Android"];
+        img.className = "platform-icon";
+        img.title = "Google Play";
+        img.onclick = () => window.open(info.playstore, "_blank");
+        container.appendChild(img);
+    }
+
+    if(info.steam){
+        const img = document.createElement("img");
+        img.src = platformLogos["Steam"];
+        img.className = "platform-icon";
+        img.title = "Steam";
+        img.onclick = () => window.open(info.steam, "_blank");
+        container.appendChild(img);
+    }
+}
+
+// JSON 데이터 로딩
 fetch("gamesiteinfo.json")
 .then(response => response.json())
-.then(data =>
-{
+.then(data => {
     const game = getGameName();
     const info = data[game];
 
-    if(!info) return; // 게임이 없으면 종료
+    if(!info) return;
 
     document.getElementById("name").textContent = info.name;
     document.getElementById("genre").textContent = info.genre;
-    document.getElementById("platform").textContent = info.platform;
     document.getElementById("short").textContent = info.short;
     document.getElementById("long").textContent = info.long;
-
     document.getElementById("headImage").src = info.head;
 
-    if(info.youtube)
-    {
+    if(info.youtube){
         document.getElementById("youtubeVideo").src = info.youtube;
     }
 
     // Privacy Policy 처리
-    if(info.privacypolicy)
-    {
+    if(info.privacypolicy){
         const pp = document.getElementById("privacyPolicy");
         pp.style.display = "block";
-        pp.onclick = () => {
-            window.open(info.privacypolicy, "_blank");
-        };
+        pp.onclick = () => window.open(info.privacypolicy, "_blank");
     }
-});
 
+    // 플랫폼 아이콘 처리
+    createPlatformIcons(info);
+});
 </script>
 
 </body>
