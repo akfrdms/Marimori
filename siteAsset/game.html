@@ -6,10 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game Info</title>
 
-<!-- 구글 폰트 가져오기 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Iosevka+Charon+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Noto+Color+Emoji&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -61,7 +60,7 @@ body{
 }
 
 .meta{
-    margin-bottom:10px;
+    margin-bottom:5px;
     color:#ccc;
 }
 
@@ -80,25 +79,34 @@ body{
     white-space: pre-wrap;
 }
 
-.long a{
-    color:#aaa;
+/* ✅ 플랫폼 아이콘 크게 + 아래 배치 */
+.platform-container {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
 }
 
-.long a:hover{
-    color:white;
-    text-decoration: underline;
+.platform-icon {
+    width: 160px;
+    height: 160px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
-.video-container{
-    margin-top:20px;
-    width:100%;
-    max-width:520px;
-    aspect-ratio:16/9;
+.platform-icon:hover {
+    transform: scale(1.1);
 }
 
-.video-container iframe{
-    width:84%;
-    height:84%;
+/* ✅ 유튜브 아래 크게 */
+.video-container {
+    margin-top: 50px;
+    width: 100%;
+}
+
+.video-container iframe {
+    width: 80%;
+    max-width: 600px;
+    aspect-ratio: 16/9;
     border-radius:10px;
     border:2px solid #333;
 }
@@ -116,7 +124,7 @@ body{
     color:white;
 }
 
-/* Privacy Policy 하단 고정 */
+/* Privacy Policy */
 .privacy-policy {
     position: fixed;
     bottom: 10px;
@@ -130,15 +138,6 @@ body{
 .privacy-policy:hover {
     color: white;
     text-decoration: underline;
-}
-
-/* 플랫폼 아이콘 */
-.platform-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-    vertical-align: middle;
-    cursor: pointer;
 }
 </style>
 </head>
@@ -158,13 +157,20 @@ body{
 <div class="game-title" id="name"></div>
 
 <div class="meta"><b>Genre:</b> <span id="genre"></span></div>
-<div class="meta"><b>GameStart:</b> <span id="platform"></span></div>
+
+<!-- ✅ GameStart 분리 -->
+<div class="meta"><b>GameStart:</b></div>
+<div id="platform" class="platform-container"></div>
 
 <div class="section">
 <div class="section-title">Short Description</div>
 <div id="short"></div>
 </div>
 
+</div>
+</div>
+
+<!-- ✅ 유튜브 헤더 아래로 이동 -->
 <div class="video-container">
 <iframe id="youtubeVideo"
 src=""
@@ -173,11 +179,7 @@ allowfullscreen>
 </iframe>
 </div>
 
-</div>
-
-</div>
-
-<!-- ✅ Contact 추가 -->
+<!-- Contact -->
 <div class="section">
 <div class="section-title">Contact</div>
 <div class="long">
@@ -198,7 +200,6 @@ We will get back to you as soon as possible.
 
 </div>
 
-<!-- Privacy Policy -->
 <div id="privacyPolicy" class="privacy-policy" style="display:none;">Privacy Policy</div>
 
 <script>
@@ -221,7 +222,6 @@ function createPlatformIcons(info) {
         const img = document.createElement("img");
         img.src = platformLogos["iOS"];
         img.className = "platform-icon";
-        img.title = "App Store";
         img.onclick = () => window.open(info.appstore, "_blank");
         container.appendChild(img);
     }
@@ -230,7 +230,6 @@ function createPlatformIcons(info) {
         const img = document.createElement("img");
         img.src = platformLogos["Android"];
         img.className = "platform-icon";
-        img.title = "Google Play";
         img.onclick = () => window.open(info.playstore, "_blank");
         container.appendChild(img);
     }
@@ -239,7 +238,6 @@ function createPlatformIcons(info) {
         const img = document.createElement("img");
         img.src = platformLogos["Steam"];
         img.className = "platform-icon";
-        img.title = "Steam";
         img.onclick = () => window.open(info.steam, "_blank");
         container.appendChild(img);
     }
